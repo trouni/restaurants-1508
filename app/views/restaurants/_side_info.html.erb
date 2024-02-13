@@ -13,11 +13,11 @@
 <div class="d-flex">
   <!-- edit and delete here-->
   <p>
-    <%= link_to edit_restaurant_path(@restaurant), class: 'btn btn-primary' do %>
-      <i class="fa-solid fa-pencil"></i>
+    <%= link_to edit_restaurant_path(@restaurant), class: 'text-dark text-decoration-none' do %>
+      <i class="fas fa-pencil-alt mx-1"></i>
     <% end %>
-    <%= link_to restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Remove #{@restaurant.name}?" }, class: 'btn btn-danger' do %>
-      <i class="fa-solid fa-trash"></i>
+    <%= link_to restaurant_path(@restaurant), class: 'text-dark text-decoration-none', data: { turbo_method: :delete, turbo_confirm: "Do you want to delete #{@restaurant.name}" } do %>
+      <i class="fas fa-trash mx-1"></i>
     <% end %>
   </p>
 </div>

@@ -2,15 +2,23 @@
 puts "Cleaning the DB..."
 Restaurant.destroy_all
 
+CHEFS = %w[Alex Dan Felix Glenn Go Hellen Hiroshi JD Justin Leo Koji Nick Nikita Nina Noah Ruby Sarah Yoshio]
 CATEGORIES = %W[burger ramen sushi desserts healthy kebabs pizza tacos sandwiches dumplings soup curry rice pasta steakhouse vegan bakery juice salads seafood brunch wings cafe bbq deli pies buffet pub brasserie shakes creamery grill]
-puts "Creating restaurants..."
 
-20.times do
+def get_category(name)
+  last_word = name.split.last.downcase
+  CATEGORIES.include?(last_word) ? last_word : CATEGORIES.sample
+end
+
+
+puts "Creating #{CHEFS.count} Restaurants..."
+CHEFS.shuffle.each do |name|
+  restaurant_name = Faker::Restaurant.unique.name
   Restaurant.create!(
-    name: Faker::Restaurant.unique.name,
+    name: "#{name}'s #{restaurant_name}",
     rating: rand(1..5),
     address: Faker::Address.street_address,
-    category: CATEGORIES.sample
+    category: get_category(restaurant_name)
   )
 end
 puts "... created #{Restaurant.count} restaurants"
