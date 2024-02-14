@@ -1,24 +1,21 @@
 Rails.application.routes.draw do
-  # HTTP_VERB '/path', to: 'controller#action', as: :prefix
-  # a prefix ONLY refers to the path, NOT the verb as well
-  # CRUD Routes
+  resources :restaurants do
+    resources :reviews, only: [:new, :create]
+  end
+  resources :reviews, only: [:destroy]
 
-  # Read All
-  get '/restaurants', to: 'restaurants#index', as: :restaurants
-
-  # Create
-  # we need a page for a restaurant form (HTML view)
-  get '/restaurants/new', to: 'restaurants#new', as: :new_restaurant
-  # a place to receive the form information (instance creation)
-  post '/restaurants', to: 'restaurants#create'
-
-  # Read One
-  get '/restaurants/:id', to: 'restaurants#show', as: :restaurant
-
-  # Update
-  get '/restaurants/:id/edit', to: 'restaurants#edit', as: :edit_restaurant
-  patch '/restaurants/:id', to: 'restaurants#update'
-
-  # Delete/Destroy
-  delete '/restaurants/:id', to: 'restaurants#destroy'
+  # get '/restaurants/:restaurant_id/reviews/new'
+  # delete '/reviews/:id', to: 'reviews#destroy'
 end
+
+# non-crud route keywords
+# collection -> we need more than one restaurant (no id)
+# member     -> it's specific to one specific restaurant (when we need the ID)
+
+
+# collection do
+#   get :top
+# end
+# member do
+#   get :chef
+# end

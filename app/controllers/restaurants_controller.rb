@@ -1,10 +1,21 @@
 class RestaurantsController < ApplicationController
+  def top
+    @restaurants = Restaurant.where(rating: 5)
+    # render 'top.html.erb'
+  end
+
+  def chef
+    @restaurant = Restaurant.find(params[:id])
+    @chef_name = @restaurant.chef_name
+  end
+
   def index
     @restaurants = Restaurant.all
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    # @user = User.find_by(username: params[:username])
   end
 
   def new
