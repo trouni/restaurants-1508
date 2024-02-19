@@ -3,6 +3,7 @@
   <%= f.input :address %>
   <%= f.input :category, collection: Restaurant::CATEGORIES %>
   <%= f.input :rating %>
+  <%= f.input :opening_date %>
   <%= f.submit "Add", class: 'btn btn-primary mt-2' %>
 <% end %>
 <%#= f.input :name, input_html: { class: 'whatever'} %>

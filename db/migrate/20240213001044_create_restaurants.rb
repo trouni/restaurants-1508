@@ -4,6 +4,7 @@ class CreateRestaurants < ActiveRecord::Migration[7.1]
       t.string :name
       t.integer :rating, default: 0
       t.string :category
+      t.date :opening_date
 
       t.timestamps
     end

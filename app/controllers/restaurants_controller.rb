@@ -16,6 +16,7 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     # @user = User.find_by(username: params[:username])
+    @review = Review.new(restaurant: @restaurant)
   end
 
   def new

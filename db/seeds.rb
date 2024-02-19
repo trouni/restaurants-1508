@@ -14,12 +14,19 @@ end
 puts "Creating #{CHEFS.count} Restaurants..."
 CHEFS.shuffle.each do |name|
   restaurant_name = Faker::Restaurant.unique.name
-  Restaurant.create!(
+  restaurant = Restaurant.create!(
     name: "#{name}'s #{restaurant_name}",
     rating: rand(3..5),
     address: Faker::Address.street_address,
     category: get_category(restaurant_name),
     chef_name: name
   )
+
+  rand(1..5).times do
+    Review.create!(
+      content: Faker::Restaurant.review,
+      restaurant: restaurant
+    )
+  end
 end
-puts "... created #{Restaurant.count} restaurants"
+puts "... created #{Restaurant.count} restaurants and #{Review.count} reviews."
